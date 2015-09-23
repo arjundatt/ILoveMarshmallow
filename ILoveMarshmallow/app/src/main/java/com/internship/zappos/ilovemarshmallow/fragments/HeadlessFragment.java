@@ -78,6 +78,7 @@ public class HeadlessFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setRetainInstance(true);
         if (getArguments() != null) {
             queryContent = getArguments().getString(SEARCH_QUERY);
         }

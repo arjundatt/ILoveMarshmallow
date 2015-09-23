@@ -2,6 +2,7 @@ package com.internship.zappos.ilovemarshmallow.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.database.DefaultDatabaseErrorHandler;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -57,12 +58,15 @@ public class ProductViewFragment extends Fragment {
     private ImageView mImageView;
     private TextView mOrigPrice;
     private TextView mPrice;
+    private static ProductViewFragment mInstance=null;
 
     private MenuItem mShareMenuItem;
 
     private View mView;
+    private View mMenu;
 
     private OnProductInfoInteractionListener mListener;
+    private Bitmap mImageBitmap;
 
     /**
      * Use this factory method to create a new instance of
@@ -73,11 +77,10 @@ public class ProductViewFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static ProductViewFragment newInstance(Bundle list) {
-        ProductViewFragment fragment = new ProductViewFragment();
-//        Bundle args = new Bundle();
-//        args.putParcelableArrayList(ARG_PARAM1, list);
-        fragment.setArguments(list);
-        return fragment;
+        if(mInstance==null)
+            mInstance = new ProductViewFragment();
+        mInstance.setArguments(list);
+        return mInstance;
     }
 
     public ProductViewFragment() {
@@ -88,6 +91,7 @@ public class ProductViewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
+
         if (getArguments() != null) {
             mList = getArguments().getParcelableArrayList(HeadlessFragment.KEY_FETCHED_RESULT);
             productUrl = getArguments().getString(HeadlessFragment.PRODUCT_INFO_URL,"");
@@ -120,9 +124,10 @@ public class ProductViewFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
         mShareMenuItem = menu.findItem(R.id.menu_item_share);
+
 //        mShareActionProvider = (ShareActionProvider)mShareMenuItem.
 
-        Log.i(MainActivity.TAG,"onCreateOptionsMenu:fragment");
+        Log.i(MainActivity.TAG, "onCreateOptionsMenu:fragment");
 
 
     }
@@ -147,8 +152,11 @@ public class ProductViewFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        new ImageLoaderAsyncTask().execute(mList.get(0).getImageUrl());
-
+        Log.i(MainActivity.TAG,"mImageBitmap"+mImageBitmap);
+        if(mImageBitmap==null)
+            new ImageLoaderAsyncTask().execute(mList.get(0).getImageUrl());
+        else
+            mImageView.setImageBitmap(mImageBitmap);
     }
 
     private class ImageLoaderAsyncTask extends AsyncTask<String, Void, Bitmap>{
@@ -178,7 +186,8 @@ public class ProductViewFragment extends Fragment {
         @Override
         protected void onPostExecute(Bitmap bitmap) {
             super.onPostExecute(bitmap);
-            mImageView.setImageBitmap(bitmap);
+            mImageBitmap = bitmap;
+            mImageView.setImageBitmap(mImageBitmap);
         }
     }
 
@@ -203,6 +212,7 @@ public class ProductViewFragment extends Fragment {
     @Override
     public void onResume() {
         super.onResume();
+        setMenuVisibility(true);
         FrameLayout container = (FrameLayout) getActivity().findViewById(R.id.product_info_container);
         container.setVisibility(View.VISIBLE);
     }
@@ -217,7 +227,11 @@ public class ProductViewFragment extends Fragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        if(mListener!=null){
+            mListener.triggerVisibility(View.VISIBLE);
+        }
         mListener = null;
+
 
     }
 
@@ -234,6 +248,7 @@ public class ProductViewFragment extends Fragment {
     public interface OnProductInfoInteractionListener {
         // TODO: Update argument type and name
         public void activateShare(String url);
+        public void triggerVisibility(int choice);
     }
 
 }

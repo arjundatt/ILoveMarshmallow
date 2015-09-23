@@ -2,6 +2,7 @@ package com.internship.zappos.ilovemarshmallow;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -14,6 +15,7 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
@@ -32,6 +34,7 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
     Button mSearchBtn;
     Context mContext;
     FrameLayout mProgressBar;
+    LinearLayout mSearchUtils;
 
     public static String TAG="LoveMarshmallow";
     public static final String URL_SCHEME = "https";
@@ -46,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         mContext = getApplicationContext();
+        mSearchUtils = (LinearLayout) findViewById(R.id.search_utils);
         mSearchView = (SearchView) findViewById(R.id.search_field);
         mSearchBtn = (Button) findViewById(R.id.search_btn);
         mProgressBar = (FrameLayout) findViewById(R.id.query_in_progress);
@@ -58,7 +62,7 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
         Intent initIntent = getIntent();
         if(initIntent!=null && initIntent.getAction().equals(Intent.ACTION_VIEW)){
             Log.i(TAG, "initIntent "+initIntent.getData().getPath());
-            initSearch(URL_SCHEME+"://"+URL_HOST+""+initIntent.getData().getPath());
+            initSearch(URL_SCHEME + "://" + URL_HOST + "" + initIntent.getData().getPath());
             //initSearch(initIntent.getData().toString());
         }
 
@@ -90,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
+        return false;
     }
 
     @Override
@@ -103,20 +107,25 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
         return super.onOptionsItemSelected(item);
     }
 
+    private void changeVisibileLayers(int choice){
+        FrameLayout container = (FrameLayout)findViewById(R.id.list_fragment_container);
+        container.setVisibility(choice);
+        mSearchUtils.setVisibility(choice);
+
+    }
     @Override
     public void onResultFetched(Bundle list) {
-        FrameLayout container = (FrameLayout)findViewById(R.id.list_fragment_container);
         if(list.getBoolean("isProductInfo")){
-            container.setVisibility(View.GONE);
-            ProductViewFragment mFragment = ProductViewFragment.newInstance(list);
+            changeVisibileLayers(View.GONE);
             FragmentManager mFragmentManager = getSupportFragmentManager();
+            ProductViewFragment mFragment = ProductViewFragment.newInstance(list);
             FragmentTransaction ft = mFragmentManager.beginTransaction();
-            ft.add(R.id.product_info_container, mFragment);
+            ft.add(R.id.product_info_container, mFragment, "productInfo");
             ft.addToBackStack(null);
             ft.commit();
         }
         else {
-            container.setVisibility(View.VISIBLE);
+            changeVisibileLayers(View.VISIBLE);
             ListResultsFragment mFragment = ListResultsFragment.newInstance(list);
             FragmentManager mFragmentManager = getSupportFragmentManager();
             FragmentTransaction ft = mFragmentManager.beginTransaction();
@@ -139,5 +148,10 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
     @Override
     public void activateShare(String url) {
         //not in use
+    }
+
+    @Override
+    public void triggerVisibility(int choice) {
+        changeVisibileLayers(choice);
     }
 }
