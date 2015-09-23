@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<items version="2" >
+
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\libs\internal_impl-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="aa92916125166649d8ad4ba3940c3dd7515596d3">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\internal_impl-23.0.1-a171c971c0a5109edb2ac4bc3de15ead0a38b2b7.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="c31e21b53ff2f74664e498248d01453a32e32d48">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\classes-eb1bd9eaa0430c30050f735f86ad814f9f987865.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\exploded-aar\com.android.support\cardview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="39ae02ce40c3ac828abbf780ce0ff5d7a28b7d6a">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\classes-030c22087eff01ab2ae7ae48944193475d2abf87.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.0.0\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4fcf0b1879f8caf497c073e1432d398e9e2988c1">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\classes-675ecf321382d41a6348cf1cf75d2df6cb217f3f.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\libs\picasso-2.5.2.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\picasso-2.5.2-02f5395e4ad18e2720f665126e43d7da4bca6479.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.0.1\jars\classes.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="4356e230a981d1bbf047d848b91bc0d9b7c5bacc">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\classes-bd80ddd55df01314f343cc87bf08a33ea743d729.jar" />
+    </item>
+    <item
+        jar="C:\Users\arjundatt.16\AppData\Local\Android\sdk\extras\android\m2repository\com\android\support\support-annotations\23.0.1\support-annotations-23.0.1.jar"
+        jumboMode="false"
+        revision="23.0.0"
+        sha1="1fce89a6428c51467090d7f424e4c9c3dbd55f7e">
+        <dex dex="C:\Users\arjundatt.16\Documents\Beats\ILoveMarshmallow\app\build\intermediates\pre-dexed\debug\support-annotations-23.0.1-5e2b5ea0a4bcfc9e26ce4003d79732b8616ba769.jar" />
+    </item>
+
+</items>
