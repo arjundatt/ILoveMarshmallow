@@ -1,13 +1,11 @@
 package com.internship.zappos.ilovemarshmallow.controllers;
 
 import android.content.Context;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 
 import com.internship.zappos.ilovemarshmallow.MainActivity;
@@ -46,6 +44,8 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<ListItemViewHo
         return vHolder;
     }
 
+    /*Using Picasso open source library(Copyright 2013 Square, Inc.)
+    * for image downloading asynchronously */
 
     @Override
     public void onBindViewHolder(ListItemViewHolder listItemViewHolder, int i) {

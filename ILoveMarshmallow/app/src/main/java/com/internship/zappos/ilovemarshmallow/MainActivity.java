@@ -2,7 +2,6 @@ package com.internship.zappos.ilovemarshmallow;
 
 import android.content.Context;
 import android.content.Intent;
-import android.content.res.Configuration;
 import android.net.Uri;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,17 +15,13 @@ import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.SearchView;
 import android.widget.Toast;
 
 import com.internship.zappos.ilovemarshmallow.fragments.HeadlessFragment;
 import com.internship.zappos.ilovemarshmallow.fragments.ListResultsFragment;
 import com.internship.zappos.ilovemarshmallow.fragments.ProductViewFragment;
-import com.internship.zappos.ilovemarshmallow.model.QueryResultItem;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements  HeadlessFragment.OnHeadlessInteractionListener, ListResultsFragment.OnRecyclerInteractionListener, ProductViewFragment.OnProductInfoInteractionListener {
 

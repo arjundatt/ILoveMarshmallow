@@ -2,15 +2,12 @@ package com.internship.zappos.ilovemarshmallow.fragments;
 
 import android.app.Activity;
 import android.content.Intent;
-import android.content.res.Configuration;
-import android.database.DefaultDatabaseErrorHandler;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.view.MenuItemCompat;
 
 import android.text.Html;
 import android.text.Spanned;
@@ -21,11 +18,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ShareActionProvider;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.internship.zappos.ilovemarshmallow.MainActivity;
 import com.internship.zappos.ilovemarshmallow.R;
@@ -68,6 +67,7 @@ public class ProductViewFragment extends Fragment {
 
     private OnProductInfoInteractionListener mListener;
     private Bitmap mImageBitmap;
+    private Button mAddToCart;
 
     /**
      * Use this factory method to create a new instance of
@@ -108,6 +108,13 @@ public class ProductViewFragment extends Fragment {
         mImageView = (ImageView) mView.findViewById(R.id.exp_image);
         mOrigPrice = (TextView) mView.findViewById(R.id.exp_orig_price);
         mPrice = (TextView) mView.findViewById(R.id.exp_price);
+        mAddToCart = (Button) mView.findViewById(R.id.add_to_cart);
+        mAddToCart.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getContext(),"Not configured!",Toast.LENGTH_SHORT).show();
+            }
+        });
         LinearLayout mOrifPriceLayout = (LinearLayout) mView.findViewById(R.id.orig_price_layout);
         if(mList.get(0).getOrigPrice().equals(mList.get(0).getPrice())){
             mOrifPriceLayout.setVisibility(View.GONE);

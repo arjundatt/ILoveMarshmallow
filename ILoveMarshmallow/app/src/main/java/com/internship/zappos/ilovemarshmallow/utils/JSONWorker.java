@@ -1,9 +1,6 @@
 package com.internship.zappos.ilovemarshmallow.utils;
 
-import android.content.Context;
-import android.util.Log;
 
-import com.internship.zappos.ilovemarshmallow.MainActivity;
 import com.internship.zappos.ilovemarshmallow.model.ProductInfo;
 import com.internship.zappos.ilovemarshmallow.model.QueryResultItem;
 
