@@ -25,7 +25,6 @@ public class JSONWorker {
     public ArrayList<ProductInfo> parseJSONforProduct(String raw, String url){
         ArrayList<ProductInfo> mList = new ArrayList<>();
         String[] temp = url.split("/");
-        Log.i(MainActivity.TAG,"temp: "+temp);
         String asinValue = temp[temp.length-1];
         try {
             JSONObject response = new JSONObject(raw);
@@ -38,7 +37,6 @@ public class JSONWorker {
             for(int i=0;i<results.length();i++){
                 JSONObject jsonItem = results.getJSONObject(i);
                 if(asinValue.equals(jsonItem.getString(QueryResultItem.ASIN_FIELD))){
-                    Log.i(MainActivity.TAG, "" + jsonItem);
                     mItem.setColor(jsonItem.getString(ProductInfo.COLOR_FIELD));
                     mItem.setOrigPrice(""+jsonItem.getInt(ProductInfo.ORIG_PRICE_FIELD));
                     mItem.setPrice("" + jsonItem.getInt(QueryResultItem.PRICE_FIELD));

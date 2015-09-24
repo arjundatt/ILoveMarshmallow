@@ -43,6 +43,8 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
     public static final String ENDPOINT_URL="https://zappos.amazon.com/mobileapi/v1/search?term=";
 
     HeadlessFragment mHeadlessFragment;
+    ProductViewFragment mProductFragment;
+    ListResultsFragment mListResultsFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -115,21 +117,24 @@ public class MainActivity extends AppCompatActivity implements  HeadlessFragment
     }
     @Override
     public void onResultFetched(Bundle list) {
+        FragmentManager mFragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = mFragmentManager.beginTransaction();
+        ft.remove(mHeadlessFragment);
+        ft.commit();
+        ft = mFragmentManager.beginTransaction();
         if(list.getBoolean("isProductInfo")){
             changeVisibileLayers(View.GONE);
-            FragmentManager mFragmentManager = getSupportFragmentManager();
-            ProductViewFragment mFragment = ProductViewFragment.newInstance(list);
-            FragmentTransaction ft = mFragmentManager.beginTransaction();
-            ft.add(R.id.product_info_container, mFragment, "productInfo");
+            mProductFragment = ProductViewFragment.newInstance(list);
+            ft.add(R.id.product_info_container, mProductFragment, "productInfo");
             ft.addToBackStack(null);
             ft.commit();
+            //Log.i(MainActivity.TAG,""+mFragmentManager.getFragments());
+
         }
         else {
             changeVisibileLayers(View.VISIBLE);
-            ListResultsFragment mFragment = ListResultsFragment.newInstance(list);
-            FragmentManager mFragmentManager = getSupportFragmentManager();
-            FragmentTransaction ft = mFragmentManager.beginTransaction();
-            ft.replace(R.id.list_fragment_container, mFragment);
+            mListResultsFragment = ListResultsFragment.newInstance(list);
+            ft.replace(R.id.list_fragment_container, mListResultsFragment);
             ft.commit();
         }
         mProgressBar.setVisibility(View.GONE);

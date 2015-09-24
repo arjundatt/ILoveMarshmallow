@@ -13,4 +13,5 @@
     <string name="your_deal">Your deal : $</string>
     <string name="share_string">Check this amazing product at Zappos:</string>
     <string name="send_to">Send via</string>
+    <string name="not_valid_query">Sorry! No match found.</string>
 </resources>

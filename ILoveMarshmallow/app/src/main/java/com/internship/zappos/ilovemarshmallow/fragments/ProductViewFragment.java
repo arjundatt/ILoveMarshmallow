@@ -13,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.view.MenuItemCompat;
 
 import android.text.Html;
+import android.text.Spanned;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -77,8 +78,7 @@ public class ProductViewFragment extends Fragment {
      */
     // TODO: Rename and change types and number of parameters
     public static ProductViewFragment newInstance(Bundle list) {
-        if(mInstance==null)
-            mInstance = new ProductViewFragment();
+        mInstance = new ProductViewFragment();
         mInstance.setArguments(list);
         return mInstance;
     }
@@ -115,7 +115,8 @@ public class ProductViewFragment extends Fragment {
         mOrigPrice.setText(mList.get(0).getOrigPrice());
         mPrice.setText(mList.get(0).getPrice());
         mTitle.setText(mList.get(0).getProductName());
-        mDescription.setText(Html.fromHtml(mList.get(0).getDescription()));
+        Spanned htmlString = Html.fromHtml(mList.get(0).getDescription());
+        mDescription.setText(htmlString);
         return mView;
     }
 
@@ -124,12 +125,6 @@ public class ProductViewFragment extends Fragment {
         super.onCreateOptionsMenu(menu, inflater);
         inflater.inflate(R.menu.menu_main, menu);
         mShareMenuItem = menu.findItem(R.id.menu_item_share);
-
-//        mShareActionProvider = (ShareActionProvider)mShareMenuItem.
-
-        Log.i(MainActivity.TAG, "onCreateOptionsMenu:fragment");
-
-
     }
 
     @Override
@@ -152,7 +147,6 @@ public class ProductViewFragment extends Fragment {
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        Log.i(MainActivity.TAG,"mImageBitmap"+mImageBitmap);
         if(mImageBitmap==null)
             new ImageLoaderAsyncTask().execute(mList.get(0).getImageUrl());
         else
@@ -226,13 +220,11 @@ public class ProductViewFragment extends Fragment {
 
     @Override
     public void onDetach() {
-        super.onDetach();
         if(mListener!=null){
             mListener.triggerVisibility(View.VISIBLE);
         }
         mListener = null;
-
-
+        super.onDetach();
     }
 
     /**

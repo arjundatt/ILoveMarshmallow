@@ -41,20 +41,11 @@ public class RecyclerListViewAdapter extends RecyclerView.Adapter<ListItemViewHo
 
     @Override
     public ListItemViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-        Log.i(MainActivity.TAG,"onCreateViewHolder "+i);
         View view = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.list_item, viewGroup, false);
         ListItemViewHolder vHolder = new ListItemViewHolder(view);
         return vHolder;
     }
-//
-//    private static void clearData(ArrayList<QueryResultItem> list) {
-//        int size = mInstance.mList.size();
-//        Log.i(MainActivity.TAG,"clearData size:"+size);
-//        for (int i = 0; i < size; i++) {
-//            mInstance.mList.remove(0);
-//        }
-//        //mInstance.notifyItemRangeRemoved(0, size);
-//    }
+
 
     @Override
     public void onBindViewHolder(ListItemViewHolder listItemViewHolder, int i) {

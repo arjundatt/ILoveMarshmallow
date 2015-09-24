@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.internship.zappos.ilovemarshmallow.MainActivity;
+import com.internship.zappos.ilovemarshmallow.R;
 import com.internship.zappos.ilovemarshmallow.model.ProductInfo;
 import com.internship.zappos.ilovemarshmallow.model.QueryResultItem;
 import com.internship.zappos.ilovemarshmallow.utils.JSONWorker;
@@ -144,9 +146,16 @@ public class HeadlessFragment extends Fragment {
                 }
             } catch (MalformedURLException e) {
                 e.printStackTrace();
+                Toast.makeText(getContext(), getResources().getString(R.string.not_valid_query), Toast.LENGTH_LONG).show();
             } catch (IOException e) {
                 e.printStackTrace();
-                Log.i(MainActivity.TAG,"IOExcepton");
+                Log.e(MainActivity.TAG, "IOExcepton");
+                getActivity().runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(getContext(), getResources().getString(R.string.not_valid_query), Toast.LENGTH_LONG).show();
+                    }
+                });
             } finally {
                 urlConnection.disconnect();
             }

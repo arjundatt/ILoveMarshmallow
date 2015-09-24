@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.internship.zappos.ilovemarshmallow.MainActivity;
 import com.internship.zappos.ilovemarshmallow.R;
@@ -84,6 +85,7 @@ public class ListResultsFragment extends Fragment {
             mAdapter = RecyclerListViewAdapter.getInstance(getContext(), mItemsList);
             mRecyclerView.setAdapter(mAdapter);
         }
+
     }
 
 
