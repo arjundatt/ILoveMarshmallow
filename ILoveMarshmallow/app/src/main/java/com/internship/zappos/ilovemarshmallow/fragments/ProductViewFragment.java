@@ -68,6 +68,7 @@ public class ProductViewFragment extends Fragment {
     private OnProductInfoInteractionListener mListener;
     private Bitmap mImageBitmap;
     private Button mAddToCart;
+    private TextView mProductColor;
 
     /**
      * Use this factory method to create a new instance of
@@ -108,6 +109,11 @@ public class ProductViewFragment extends Fragment {
         mImageView = (ImageView) mView.findViewById(R.id.exp_image);
         mOrigPrice = (TextView) mView.findViewById(R.id.exp_orig_price);
         mPrice = (TextView) mView.findViewById(R.id.exp_price);
+        mProductColor = (TextView) mView.findViewById(R.id.product_color);
+        if(mList.get(0).getColor() != null){
+            mProductColor.setVisibility(View.VISIBLE);
+            mProductColor.setText(mList.get(0).getColor());
+        }
         mAddToCart = (Button) mView.findViewById(R.id.add_to_cart);
         mAddToCart.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,11 +121,15 @@ public class ProductViewFragment extends Fragment {
                 Toast.makeText(getContext(),"Not configured!",Toast.LENGTH_SHORT).show();
             }
         });
-        LinearLayout mOrifPriceLayout = (LinearLayout) mView.findViewById(R.id.orig_price_layout);
-        if(mList.get(0).getOrigPrice().equals(mList.get(0).getPrice())){
-            mOrifPriceLayout.setVisibility(View.GONE);
+        LinearLayout mOrigPriceLayout = (LinearLayout) mView.findViewById(R.id.orig_price_layout);
+        if((mList.get(0).getOrigPrice()!=null) && !(mList.get(0).getOrigPrice().equals(mList.get(0).getPrice()))){
+            mOrigPriceLayout.setVisibility(View.VISIBLE);
+            mOrigPrice.setText(mList.get(0).getOrigPrice());
         }
-        mOrigPrice.setText(mList.get(0).getOrigPrice());
+        TextView mYourdeal = (TextView) mView.findViewById(R.id.your_deal);
+        if(("Out of stock!").equals(mList.get(0).getPrice())){
+            mYourdeal.setVisibility(View.GONE);
+        }
         mPrice.setText(mList.get(0).getPrice());
         mTitle.setText(mList.get(0).getProductName());
         Spanned htmlString = Html.fromHtml(mList.get(0).getDescription());

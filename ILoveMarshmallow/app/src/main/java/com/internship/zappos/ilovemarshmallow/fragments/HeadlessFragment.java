@@ -30,6 +30,9 @@ import java.util.ArrayList;
 
 import javax.net.ssl.HttpsURLConnection;
 
+/*This class is responsible for interacting
+* with the server and fetching results */
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the

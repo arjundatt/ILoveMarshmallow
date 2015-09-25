@@ -15,4 +15,5 @@
     <string name="send_to">Send via</string>
     <string name="not_valid_query">Sorry! No match found.</string>
     <string name="add_to_cart">Add to cart</string>
+    <string name="product_color">Color :</string>
 </resources>

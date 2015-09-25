@@ -10,6 +10,8 @@ public class ProductInfo implements Parcelable{
     public static final String DESCRIPTION_FIELD="description";
     public static final String GENDER_FIELD="genders";
     public static final String IMAGE_URL_FIELD="imageUrl";
+    public static final String DEFAULT_IMAGE_URL_FIELD="defaultImageUrl";
+
     public static final String LISTINGS="childAsins";
     public static final String SIZING_MAIN_FIELD="sizing";
     public static final String SIZE_WEIGHT_FIELD="weight";

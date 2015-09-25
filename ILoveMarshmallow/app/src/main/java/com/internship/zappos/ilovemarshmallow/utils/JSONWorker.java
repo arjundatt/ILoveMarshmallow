@@ -1,6 +1,9 @@
 package com.internship.zappos.ilovemarshmallow.utils;
 
 
+import android.util.Log;
+
+import com.internship.zappos.ilovemarshmallow.MainActivity;
 import com.internship.zappos.ilovemarshmallow.model.ProductInfo;
 import com.internship.zappos.ilovemarshmallow.model.QueryResultItem;
 
@@ -12,6 +15,8 @@ import java.util.ArrayList;
 
 /**
  * Created by arjundatt.16 on 9/4/2015.
+ * This worker class parses the JSON data and
+ * and returns the result in an ArrayList.
  */
 public class JSONWorker {
     //private Context mContext;
@@ -23,6 +28,7 @@ public class JSONWorker {
         ArrayList<ProductInfo> mList = new ArrayList<>();
         String[] temp = url.split("/");
         String asinValue = temp[temp.length-1];
+        Log.i(MainActivity.TAG, raw);
         try {
             JSONObject response = new JSONObject(raw);
             ProductInfo mItem = new ProductInfo();
@@ -31,9 +37,14 @@ public class JSONWorker {
             mItem.setProductName(response.getString(QueryResultItem.PRODUCT_NAME_FIELD));
 
             JSONArray results = response.getJSONArray(ProductInfo.LISTINGS);
+
+            mItem.setImageUrl(response.getString(ProductInfo.DEFAULT_IMAGE_URL_FIELD));
+            mItem.setColor(null);
+            mItem.setOrigPrice(null);
+            mItem.setPrice("Out of stock!");
             for(int i=0;i<results.length();i++){
                 JSONObject jsonItem = results.getJSONObject(i);
-                if(asinValue.equals(jsonItem.getString(QueryResultItem.ASIN_FIELD))){
+                if(jsonItem.has(QueryResultItem.ASIN_FIELD) && asinValue.equals(jsonItem.getString(QueryResultItem.ASIN_FIELD))){
                     mItem.setColor(jsonItem.getString(ProductInfo.COLOR_FIELD));
                     mItem.setOrigPrice(""+jsonItem.getInt(ProductInfo.ORIG_PRICE_FIELD));
                     mItem.setPrice("" + jsonItem.getInt(QueryResultItem.PRICE_FIELD));
@@ -41,12 +52,15 @@ public class JSONWorker {
 
                 }
                 //mItem.setProductUrl(jsonItem.getString(QueryResultItem.PRODUCT_URL_FIELD));
-                mList.add(mItem);
+
             }
+            mList.add(mItem);
         } catch (JSONException e) {
             e.printStackTrace();
         }
         return mList;
+
+
     }
     public ArrayList<QueryResultItem> parseJSONforList(String raw){
         ArrayList<QueryResultItem> mList = new ArrayList<>();

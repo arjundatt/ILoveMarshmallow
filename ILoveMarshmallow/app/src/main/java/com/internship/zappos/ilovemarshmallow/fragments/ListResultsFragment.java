@@ -19,6 +19,9 @@ import com.internship.zappos.ilovemarshmallow.model.QueryResultItem;
 
 import java.util.ArrayList;
 
+/* This fragment holds the RecyclerView which shows
+* the items in the list */
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
